@@ -21,7 +21,6 @@ coverage.out
 README.md
 
 # Build artifacts
-bin/
 *.exe
 *.exe~
 *.dll

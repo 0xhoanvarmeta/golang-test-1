@@ -111,10 +111,15 @@ jobs:
           name: http-server
           path: bin/
 
-      - name: Verify binary exists
+      - name: Verify binary exists and show all files
         run: |
+          echo "=== Listing bin/ folder ==="
           ls -lh bin/
+          echo "=== Listing root directory ==="
+          ls -lha
+          echo "=== Setting permissions ==="
           chmod +x bin/http-server
+          echo "=== File info ==="
           file bin/http-server
 
       - name: Set up Docker Buildx
@@ -141,7 +146,6 @@ jobs:
         with:
           context: .
           push: true
+          no-cache: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max

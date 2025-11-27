@@ -110,6 +110,11 @@ jobs:
         with:
           go-version: '1.23'
 
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v6.0.0
+        with:
+          name: http-server
+          path: http-server
       - name: Build binary for Docker
         run: |
           mkdir -p bin

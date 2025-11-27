@@ -29,6 +29,6 @@ func (u *UserService) CreateUser(body dtos.CreateUserRequest) error {
 		Email:    body.Email,
 		Password: string(hashedPassword),
 	}
-	
+
 	return u.userRepository.CreateUser(user)
 }

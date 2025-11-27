@@ -76,7 +76,7 @@ func (repo *BaseSQLRepository[T]) Insert(query string, args ...any) (int, error)
 func (repo *BaseSQLRepository[T]) ExecuteQuery(query string, args ...any) (sql.Result, error) {
 	ctx, cancel := GetContextWithTimeout()
 	defer cancel()
-	
+
 	result, err := repo.DB.ExecContext(ctx, query, args...)
 	if err != nil {
 		return nil, err

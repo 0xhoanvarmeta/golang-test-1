@@ -87,14 +87,13 @@ jobs:
 
       - name: Build for Linux
         run: |
-          mkdir -p bin
-          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o bin/http-server ./cmd/http-server
+          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o http-server ./cmd/http-server
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: http-server
-          path: bin/
+          path: http-server
 
   # Docker build job - builds image with pre-built binary
   docker:
@@ -110,7 +109,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: http-server
-          path: .
+          path: bin/
 
       - name: Verify binary exists
         run: |
